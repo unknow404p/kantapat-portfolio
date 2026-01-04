@@ -40,7 +40,7 @@ export default function Home() {
 
       {/* --- Text Content --- */}
       <h2 className="text-cyan-400 text-xs font-bold tracking-[0.2em] uppercase mb-4">
-        Full Stack Developer
+        kantapat.dev
       </h2>
 
       <h1 className="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight leading-tight">
