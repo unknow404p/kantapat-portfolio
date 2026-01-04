@@ -1,0 +1,49 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* พื้นหลังสีดำทั้งเว็บ */
+body {
+  background-color: #050505;
+  color: white;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* เอฟเฟกต์พื้นหลัง Grid */
+.animated-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* อยู่ข้างหลังสุด */
+  
+  /* เส้นตารางสีจางๆ */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  
+  /* อนิเมชั่นให้ขยับ */
+  animation: moveGrid 20s linear infinite;
+}
+
+/* เอฟเฟกต์เงาเรืองแสงด้านหลังรูป (Glow) */
+.glow-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes moveGrid {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
