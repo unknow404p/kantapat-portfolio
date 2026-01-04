@@ -84,12 +84,12 @@ export default function AboutPage() {
                <div className="flex items-center gap-3 mb-6">
                   <div className="h-[2px] w-12 bg-orange-500"></div>
                   <span className={`text-xs font-bold tracking-[0.4em] text-orange-400 uppercase ${mono.className}`}>
-                    System Profile
+                    kantapat.dev
                   </span>
                </div>
                <h1 className={`text-5xl lg:text-7xl font-bold leading-[1.1] mb-6 ${kanit.className}`}>
-                  เพราะโค้ดคือ <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200">การสร้างสรรค์.</span>
+                  ABOUT <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200">ME.</span>
                </h1>
             </motion.div>
 
