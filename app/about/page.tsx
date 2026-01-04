@@ -76,12 +76,14 @@ export default function AboutPage() {
                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">RUNGRUANGSRI</span>
              </h1>
              <div className={`space-y-6 text-gray-600 text-lg md:text-xl leading-relaxed ${kanit.className}`}>
-               <p>สวัสดีครับ ผมชื่อ <strong>กันตพรรดิ์</strong> (Kantapat) ผมไมีความสนใจด้านวิทยาการคอมพิวเตอร์และเทคโนโลยีดิจิทัล โดยเฉพาะการนำความรู้ด้านการเขียนโปรแกรมและการคิดเชิงวิเคราะห์มาประยุกต์ใช้ในการแก้ปัญหาอย่างเป็นระบบ ผมมีความมุ่งมั่นในการพัฒนาทักษะด้านการออกแบบระบบ การเขียนโค้ด และการทำงานเป็นทีม ผ่านการเรียนรู้ด้วยตนเองและการทำโครงการที่เกี่ยวข้องกับเทคโนโลยี</p>
+               <p>สวัสดีครับ ผมชื่อ <strong>กันตพรรดิ์</strong> (Kantapat) ผมมีความสนใจด้านวิทยาการคอมพิวเตอร์และเทคโนโลยีดิจิทัล โดยเฉพาะการนำความรู้ด้านการเขียนโปรแกรมและการคิดเชิงวิเคราะห์มาประยุกต์ใช้ในการแก้ปัญหาอย่างเป็นระบบ ผมมีความมุ่งมั่นในการพัฒนาทักษะด้านการออกแบบระบบ การเขียนโค้ด และการทำงานเป็นทีม ผ่านการเรียนรู้ด้วยตนเองและการทำโครงการที่เกี่ยวข้องกับเทคโนโลยี</p>
                <p>ผมมีความฝันที่จะนำทักษะ <span className="text-orange-600 font-medium">Full Stack Development</span> ไปต่อยอดที่ <strong>KMUTT</strong> เพื่อสร้างนวัตกรรมที่แก้ปัญหาได้จริงในโลกยุคดิจิทัล</p>
              </div>
              
              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 my-10 pt-8 border-t border-gray-200">
-                
+                <div><h3 className="text-3xl font-bold text-gray-900">3+</h3><p className="text-sm text-gray-500 uppercase mt-1">Years Coding</p></div>
+                <div><h3 className="text-3xl font-bold text-gray-900">3+</h3><p className="text-sm text-gray-500 uppercase mt-1">Projects</p></div>
+                <div><h3 className="text-3xl font-bold text-orange-500">100%</h3><p className="text-sm text-gray-500 uppercase mt-1">Passion</p></div>
              </div>
 
              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
