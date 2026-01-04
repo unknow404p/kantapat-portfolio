@@ -32,7 +32,7 @@ export default function Contact() {
             className="space-y-8"
         >
           <p className="text-gray-400 text-lg leading-relaxed">
-            Interested in working together? I am currently available for freelance projects and open to new opportunities.
+           ในส่วนนี้ยังใช้งานไม่ได้ แต่ในอนาคตผมอาจจะต่อยอดให้ใช้งานได้
           </p>
 
           <div className="space-y-6">
