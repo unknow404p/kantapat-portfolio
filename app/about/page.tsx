@@ -11,132 +11,139 @@ const mono = JetBrains_Mono({ subsets: ["latin"] });
 
 export default function AboutPage() {
   return (
-    <div className={`w-full min-h-screen text-white flex flex-col lg:flex-row relative overflow-x-hidden ${inter.className}`}>
+    <div className={`relative w-full min-h-screen text-[#1d1d1f] font-sans overflow-x-hidden ${inter.className}`}>
       
-      {/* --- 1. REAL TRANSPARENT BACKGROUND & GRID --- */}
-      <div className="fixed inset-0 -z-20 bg-[#080400]"></div> {/* พื้นหลังเข้มบางๆ ชั้นล่างสุด */}
+      {/* --- 1. FORCE FULL SCREEN BACKGROUND (บังคับพื้นหลังขาวเต็มจอ) --- */}
+      {/* ใช้ fixed inset-0 เพื่อให้สีขาวคลุมทับพื้นหลังเดิม (สีดำ) ทั้งหมดแน่นอน */}
+      <div className="fixed inset-0 bg-[#FAFAFA] -z-50"></div>
       
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-         {/* แสงฟุ้งสีส้ม (ปรับให้สว่างขึ้นเพื่อให้ทะลุพื้นหลัง) */}
-         <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-orange-600/20 blur-[120px] rounded-full"></div>
-         <div className="absolute bottom-[10%] right-[-5%] w-[500px] h-[500px] bg-amber-500/10 blur-[100px] rounded-full"></div>
-         
-         {/* เส้น Grid (ปรับสีให้เห็นชัดขึ้นบนพื้นโปร่ง) */}
-         <div 
-            className="absolute inset-0 opacity-[0.2]" 
-            style={{ 
-               backgroundImage: `linear-gradient(#331a00 1px, transparent 1px), linear-gradient(90deg, #331a00 1px, transparent 1px)`, 
-               backgroundSize: '50px 50px' 
-            }}
-         ></div>
-
-         {/* Vignette Overlay (ขอบมืดเพื่อให้ตรงกลางดูโปร่ง) */}
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#080400_100%)]"></div>
+      {/* Background Pattern (Grid จางๆ) */}
+      <div className="fixed inset-0 pointer-events-none opacity-[0.4] -z-40"
+           style={{ backgroundImage: "radial-gradient(#e5e7eb 1px, transparent 1px)", backgroundSize: "32px 32px" }}>
       </div>
 
-      {/* --- LEFT SIDE: Profile Photo (Small Scale) --- */}
-      <div className="lg:w-1/2 flex items-center justify-center p-12 lg:p-24 relative">
-         <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="relative w-full max-w-[300px] aspect-[4/5] group"
-         >
-            {/* Aura เรืองแสงรอบรูป */}
-            <div className="absolute -inset-1 bg-gradient-to-tr from-orange-500/40 to-amber-300/10 rounded-3xl blur-xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-            
-            <div className="relative w-full h-full rounded-2xl border border-orange-500/30 overflow-hidden bg-black/20 backdrop-blur-md shadow-2xl">
-               <Image 
-                  src="/images/kantapat-school.jpg" 
-                  alt="Kantapat Profile"
-                  fill
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
-                  priority
-               />
-               {/* Scan Line สีส้มบางๆ */}
-               <motion.div 
-                  animate={{ top: ["-5%", "105%"] }}
-                  transition={{ duration: 4, ease: "linear", repeat: Infinity }}
-                  className="absolute left-0 w-full h-[2px] bg-orange-500/30 blur-[1px] z-10"
-               />
-            </div>
+      {/* --- CONTENT CONTAINER --- */}
+      <div className="max-w-7xl mx-auto min-h-screen flex flex-col lg:flex-row items-center justify-center p-6 lg:p-12 gap-12 lg:gap-20 relative z-10">
+        
+        {/* --- LEFT SIDE: IMAGE WITH GIMMICKS --- */}
+        <div className="lg:w-5/12 relative flex justify-center">
+           
+           {/* Animated Blob Behind */}
+           <motion.div 
+             animate={{ scale: [1, 1.1, 1], rotate: [0, 10, -10, 0] }}
+             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+             className="absolute inset-0 bg-orange-400/20 blur-[60px] rounded-full scale-110 -z-10"
+           />
 
-            {/* Status Tag ลอยตัว */}
-            <div className={`absolute -bottom-3 -right-3 bg-orange-600 px-3 py-1.5 rounded-lg shadow-lg z-20 ${mono.className}`}>
-               <div className="text-[10px] font-bold text-white flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 bg-white rounded-full animate-ping"></span>
-                  STATUS: ONLINE
-               </div>
-            </div>
-         </motion.div>
-      </div>
+           {/* Floating Image Container */}
+           <motion.div 
+             animate={{ y: [-10, 10, -10] }} 
+             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+             className="relative w-[280px] md:w-[350px] aspect-[3/4]"
+           >
+              {/* รูปภาพ */}
+              <div className="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white rotate-[-3deg] hover:rotate-0 transition-all duration-500 cursor-pointer group bg-white">
+                 <Image 
+                   src="/images/kantapat-school.jpg" 
+                   alt="Profile"
+                   fill
+                   className="object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                   priority
+                 />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60"></div>
+                 <div className="absolute bottom-0 left-0 w-full p-6 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <p className={`text-sm font-bold ${mono.className}`}>KANTAPAT.DEV</p>
+                 </div>
+              </div>
 
-      {/* --- RIGHT SIDE: Content --- */}
-      <div className="lg:w-1/2 relative z-10 flex flex-col justify-center">
-         <div className="px-8 py-16 md:px-16 lg:px-24 max-w-2xl bg-black/10 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none rounded-3xl">
-            
-            {/* Header Section */}
-            <motion.div 
-               initial={{ opacity: 0, x: 30 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               transition={{ duration: 0.6 }}
-               className="mb-10"
-            >
-               <div className="flex items-center gap-3 mb-6">
-                  <div className="h-[2px] w-12 bg-orange-500"></div>
-                  <span className={`text-xs font-bold tracking-[0.4em] text-orange-400 uppercase ${mono.className}`}>
-                    kantapat.dev
-                  </span>
-               </div>
-               <h1 className={`text-5xl lg:text-7xl font-bold leading-[1.1] mb-6 ${kanit.className}`}>
-                  ABOUT <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-200">ME.</span>
-               </h1>
-            </motion.div>
+              {/* Floating Badge */}
+              <motion.div 
+                animate={{ y: [5, -5, 5] }}
+                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                className="absolute -right-8 top-10 bg-white p-3 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3"
+              >
+                 <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-xl"></div>
+                 <div>
+                    <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Current Goal</div>
+                    <div className="text-sm font-bold text-gray-800">KMUTT Student</div>
+                 </div>
+              </motion.div>
 
-            {/* Bio Text */}
-            <motion.div 
-               initial={{ opacity: 0 }}
-               whileInView={{ opacity: 1 }}
-               className={`space-y-6 text-slate-300 text-lg leading-relaxed ${kanit.className}`}
-            >
+              {/* Tech Stack Badge */}
+              <motion.div 
+                animate={{ x: [-5, 5, -5] }}
+                transition={{ duration: 5, repeat: Infinity, delay: 0.5 }}
+                className="absolute -left-6 bottom-10 bg-[#1d1d1f] text-white py-2 px-4 rounded-xl shadow-xl flex items-center gap-2"
+              >
+                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                 <span className={`text-xs font-mono font-bold`}>Full Stack Ready</span>
+              </motion.div>
+           </motion.div>
+        </div>
+
+        {/* --- RIGHT SIDE: CONTENT --- */}
+        <div className="lg:w-7/12 flex flex-col justify-center text-center lg:text-left">
+           <motion.div 
+             initial={{ opacity: 0, x: 20 }}
+             animate={{ opacity: 1, x: 0 }}
+             transition={{ duration: 0.8 }}
+           >
+             {/* Tag */}
+             <span className="inline-block px-4 py-1.5 bg-orange-100 text-orange-700 rounded-full text-xs font-bold tracking-widest uppercase mb-6">
+                About Me
+             </span>
+
+             {/* Headline */}
+             <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+               I build things for <br/>
+               <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">
+                 the Web & Future.
+               </span>
+             </h1>
+
+             {/* Bio */}
+             <div className={`space-y-6 text-gray-600 text-lg md:text-xl leading-relaxed ${kanit.className}`}>
                <p>
-                  สวัสดีครับ ผม <strong className="text-white">กันตพรรดิ์</strong> ผมหลงใหลในการสร้าง Digital Experience ที่สมบูรณ์แบบ ทั้งในด้านความสวยงามและประสิทธิภาพของระบบ
+                 สวัสดีครับ ผมชื่อ <strong>กันตพรรดิ์</strong> (Kantapat) ผมไม่ได้แค่เขียนโค้ดให้มันทำงานได้ แต่ผมใส่ใจในทุกรายละเอียดของ User Experience และ Performance
                </p>
-               <p className="p-4 bg-orange-500/10 border-l-4 border-orange-500 rounded-r-xl text-orange-100 text-sm">
-                  เชี่ยวชาญการพัฒนา <span className="text-orange-400 font-bold">Full Stack System</span> และมีความสนใจในการประยุกต์ใช้ IoT เพื่อสร้างนวัตกรรมใหม่ๆ
+               <p>
+                 ผมมีความฝันที่จะนำทักษะ <span className="text-orange-600 font-medium">Full Stack Development</span> ไปต่อยอดที่ <strong>KMUTT</strong> เพื่อสร้างนวัตกรรมที่แก้ปัญหาได้จริงในโลกยุคดิจิทัล
                </p>
-            </motion.div>
+             </div>
 
-            {/* --- ACTION BUTTONS --- */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-12">
-               {/* ปุ่ม Why KMUTT (ดีไซน์ส้มเด่น) */}
-               <Link href="/why-kmutt" className="flex-1 group">
-                  <button className="w-full py-4 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-xl transition-all shadow-[0_10px_30px_rgba(234,88,12,0.3)] flex items-center justify-center gap-2 overflow-hidden relative">
-                     <span className="relative z-10 uppercase tracking-wider text-sm">Why KMUTT?</span>
-                     <motion.div 
-                        animate={{ x: [-100, 200] }} 
-                        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
-                     />
-                  </button>
+             {/* Stats */}
+             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 my-10 pt-8 border-t border-gray-200">
+                <div>
+                   <h3 className="text-3xl font-bold text-gray-900">3+</h3>
+                   <p className="text-sm text-gray-500 uppercase tracking-wide mt-1">Years Coding</p>
+                </div>
+                <div>
+                   <h3 className="text-3xl font-bold text-gray-900">20+</h3>
+                   <p className="text-sm text-gray-500 uppercase tracking-wide mt-1">Projects</p>
+                </div>
+                <div>
+                   <h3 className="text-3xl font-bold text-orange-500">100%</h3>
+                   <p className="text-sm text-gray-500 uppercase tracking-wide mt-1">Passion</p>
+                </div>
+             </div>
+
+             {/* Buttons */}
+             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+               <Link href="/projects">
+                 <button className="px-8 py-4 bg-[#1d1d1f] text-white font-bold rounded-xl hover:bg-gray-800 transition-all shadow-lg hover:shadow-2xl hover:-translate-y-1">
+                    View My Projects
+                 </button>
                </Link>
-
-               {/* ปุ่ม Projects (ดีไซน์โปร่งแสง) */}
-               <Link href="/projects" className="flex-1">
-                  <button className="w-full py-4 bg-white/5 border border-white/10 hover:border-orange-500/50 text-white hover:text-orange-400 font-bold rounded-xl transition-all backdrop-blur-md uppercase tracking-wider text-sm">
-                     View Projects
-                  </button>
+               <Link href="/why-kmutt">
+                 <button className="px-8 py-4 bg-white border border-gray-200 text-gray-800 font-bold rounded-xl hover:border-orange-500 hover:text-orange-600 hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                    Why KMUTT?
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                 </button>
                </Link>
-            </div>
+             </div>
+           </motion.div>
+        </div>
 
-            {/* Terminal Style Footer */}
-            <div className={`mt-16 pt-8 border-t border-white/5 flex items-center gap-4 opacity-30 ${mono.className}`}>
-               <span className="text-[10px]">LOC: THAILAND</span>
-               <div className="h-1 w-1 bg-slate-500 rounded-full"></div>
-               <span className="text-[10px]">VER: 3.0.1_STABLE</span>
-            </div>
-
-         </div>
       </div>
     </div>
   );
