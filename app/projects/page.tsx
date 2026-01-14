@@ -36,16 +36,7 @@ export default async function ProjectsPage() {
          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-orange-300/40 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-2000"></div>
       </div>
 
-      {/* --- 🌟 NAVBAR: แคปซูลสีดำ ลอยตรงกลาง (เหมือนหน้า Home) --- */}
-      <nav className="sticky top-6 z-[60] flex justify-center mb-16">
-        <div className="bg-[#1d1d1f] px-8 py-3 rounded-full flex items-center gap-8 shadow-2xl border border-white/10 transition-transform hover:scale-105">
-            <Link href="/" className="text-gray-400 hover:text-white text-sm font-medium transition-colors">Home</Link>
-            <Link href="/about" className="text-gray-400 hover:text-white text-sm font-medium transition-colors">About</Link>
-            <Link href="/why-kmutt" className="text-gray-400 hover:text-white text-sm font-medium transition-colors">Why KMUTT</Link>
-            <Link href="/projects" className="text-white text-sm font-bold border-b-2 border-orange-500 pb-0.5">Projects</Link>
-            <Link href="/contact" className="text-gray-400 hover:text-white text-sm font-medium transition-colors">Contact</Link>
-        </div>
-      </nav>
+    
 
       {/* --- MAIN CONTENT --- */}
       <main className="relative z-10 max-w-[90rem] mx-auto px-6 lg:px-12">
